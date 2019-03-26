@@ -1,7 +1,6 @@
 package pl.daftacademy.androidlevelup.view.movies
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +9,9 @@ import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.fragment_movies.*
 import pl.daftacademy.androidlevelup.R
 import pl.daftacademy.androidlevelup.view.viewmodel.MoviesViewModel
+
+
+const val GENRE_EXTRA = "GENRE_EXTRA"
 
 class MoviesFragment : Fragment() {
 
@@ -20,7 +22,22 @@ class MoviesFragment : Fragment() {
             inflater.inflate(R.layout.fragment_movies, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val category = arguments?.getString(GENRE_EXTRA) ?: throw IllegalStateException("Required genre argument")
         recyclerView.adapter = adapter
-        adapter.items = viewModel.getMovies()
+        if (category.isEmpty()) {
+            adapter.items = viewModel.getMovies()
+        }else{
+            adapter.items = viewModel.getMoviesOfGenre(category)
+        }
+    }
+
+    companion object {
+        fun create(genre: String): MoviesFragment {
+            val fragment = MoviesFragment()
+            val args = Bundle()
+            args.putString(GENRE_EXTRA, genre)
+            fragment.arguments = args
+            return fragment
+        }
     }
 }
