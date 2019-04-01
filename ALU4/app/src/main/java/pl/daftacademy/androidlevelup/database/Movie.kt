@@ -3,6 +3,7 @@ package pl.daftacademy.androidlevelup.database
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import pl.daftacademy.androidlevelup.entity.Movie as EntityMovie
 
 @Entity(
     foreignKeys = [
@@ -15,4 +16,9 @@ class Movie(
     val year: Int,
     val genres: String,
     val studioId: Int
-)
+){
+
+    companion object {
+        fun fromEntity(entity: EntityMovie) = Movie(0, entity.title, entity.year, entity.genres.joinToString(","), 0)
+    }
+}
