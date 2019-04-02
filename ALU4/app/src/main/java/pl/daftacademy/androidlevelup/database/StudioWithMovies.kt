@@ -14,7 +14,7 @@ class StudioWithMovies {
     @Relation(parentColumn = "id", entityColumn = "studioId")
     var movies: List<Movie>? = null
 
-    fun toEntity(): List<EntityMovie> = if (movies != null && studio != null){
+    fun toListOfMovies(): List<EntityMovie> = if (movies != null && studio != null){
         movies!!.map { EntityMovie( it.title, it.year, it.genres.split(","), studio!!.name) }
     }else {
         emptyList()

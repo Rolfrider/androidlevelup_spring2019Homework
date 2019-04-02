@@ -7,15 +7,12 @@ import pl.daftacademy.androidlevelup.database.Movie as DbMovie
 class RoomMovies(private val movieDao: MovieDao) : Movies {
 
     override fun add(movies: Collection<Movie>) {
-        movieDao.addMovieWithStudio(movies.filter { it.studio != null }
-            .map(Studio.Companion::fromEntity).first(),
-            movies.map(DbMovie.Companion::fromEntity))
+        movieDao.addMoviesWithStudios(  movies.groupBy({Studio.fromEntity(it)}, {DbMovie.fromEntity(it)}) )
     }
 
     override fun get(): List<Movie> {
-        val studiosWithMovies = movieDao.getStudioWithMovies()
-        var allMovies: List<Movie> = listOf()
-        studiosWithMovies.forEach { allMovies += it.toEntity() }
+        val allMovies: MutableList<Movie> = mutableListOf()
+        movieDao.getStudioWithMovies().forEach { allMovies.addAll(it.toListOfMovies()) }
         return allMovies
     }
 }

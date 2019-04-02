@@ -19,6 +19,7 @@ class Movie(
 ){
 
     companion object {
-        fun fromEntity(entity: EntityMovie) = Movie(0, entity.title, entity.year, entity.genres.joinToString(","), 0)
+        fun fromEntity(entity: EntityMovie) =
+            Movie(0, entity.title, entity.year, entity.genres.joinToString(","), 0)
     }
 }
