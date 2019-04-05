@@ -22,12 +22,12 @@ class MoviesFragment : Fragment() {
             inflater.inflate(R.layout.fragment_movies, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val category = arguments?.getString(GENRE_EXTRA) ?: throw IllegalStateException("Required genre argument")
+        val genre = arguments?.getString(GENRE_EXTRA) ?: throw IllegalStateException("Required genre argument")
         recyclerView.adapter = adapter
-        if (category.isEmpty()) {
+        if (genre.isEmpty()) {
             adapter.items = viewModel.getMovies()
         }else{
-            adapter.items = viewModel.getMoviesOfGenre(category)
+            adapter.items = viewModel.getMoviesOfGenre(genre)
         }
     }
 
