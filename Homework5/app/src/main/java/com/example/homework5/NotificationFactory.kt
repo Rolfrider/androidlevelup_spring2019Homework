@@ -8,9 +8,9 @@ import android.content.Context
 import android.content.Intent
 import android.media.RingtoneManager
 import android.os.Build
-import android.support.annotation.RequiresApi
-import android.support.annotation.StringRes
-import android.support.v4.app.NotificationCompat
+import androidx.annotation.RequiresApi
+import androidx.annotation.StringRes
+import androidx.core.app.NotificationCompat
 import java.util.*
 
 class NotificationFactory {

@@ -1,8 +1,9 @@
-package com.example.homework5
+package com.example.homework5.broadcast
 
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import com.example.homework5.NotificationFactory
 
 class GreetingsBroadcastReceiver: BroadcastReceiver() {
 
