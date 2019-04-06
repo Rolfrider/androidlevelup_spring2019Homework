@@ -1,4 +1,4 @@
-package com.example.homework5
+package com.example.homework5.worker
 
 import android.app.AlarmManager
 import android.app.PendingIntent
