@@ -11,8 +11,6 @@ class RoomMovies(private val movieDao: MovieDao) : Movies {
     }
 
     override fun get(): List<Movie> {
-        val allMovies: MutableList<Movie> = mutableListOf()
-        movieDao.getStudioWithMovies().forEach { allMovies.addAll(it.toListOfMovies()) }
-        return allMovies
+        return movieDao.getStudioWithMovies().flatMap { it.toListOfMovies() }
     }
 }
