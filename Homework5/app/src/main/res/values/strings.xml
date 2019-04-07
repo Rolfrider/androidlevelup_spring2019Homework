@@ -4,4 +4,5 @@
 
     <string name="notification_channel_default_id">default</string>
     <string name="notification_channel_default_name">Domyślne</string>
+    <string name="stop_scanning">Stop Scanning</string>
 </resources>
