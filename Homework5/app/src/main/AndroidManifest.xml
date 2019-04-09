@@ -25,6 +25,7 @@
         </activity>
 
         <service android:name=".service.ScanningForegroundService"/>
+        <service android:name=".service.FamiliadaService"/>
 
         <receiver android:name=".broadcast.GreetingsBroadcastReceiver" android:exported="true">
             <intent-filter>

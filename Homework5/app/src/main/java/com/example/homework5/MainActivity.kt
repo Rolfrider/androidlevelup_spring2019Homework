@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.work.*
 import com.example.homework5.broadcast.FamiliadaBroadcastReceiver
+import com.example.homework5.service.FamiliadaService
 import com.example.homework5.service.ScanningForegroundService
 import com.example.homework5.worker.CreepWorker
 import kotlinx.android.synthetic.main.activity_main.*
@@ -72,8 +73,11 @@ class MainActivity : AppCompatActivity() {
             set(Calendar.MINUTE, 20)
         }
 
+        // Commented code for IntentService
+        //Intent(this, FamiliadaService::class.java)
         Intent(this, FamiliadaBroadcastReceiver::class.java)
             .apply { action = "com.example.homework5.NOTIFY" }
+            //.let { PendingIntent.getService(this, 0, it, 0) }
             .let { PendingIntent.getBroadcast(this, 0, it, 0) }
             .let {
                 alarmManager.setInexactRepeating(
