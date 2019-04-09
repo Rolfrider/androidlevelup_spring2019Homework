@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
             .setConstraints(constraints)
             .build()
         WorkManager.getInstance()
-            .enqueueUniqueWork(CreepWorker::javaClass.name, ExistingWorkPolicy.APPEND, request)// TODO: Change to replace
+            .enqueueUniqueWork(CreepWorker::javaClass.name, ExistingWorkPolicy.REPLACE, request)
 
     }
 
@@ -68,8 +68,8 @@ class MainActivity : AppCompatActivity() {
 
         val calendar: Calendar = Calendar.getInstance().apply {
             timeInMillis = System.currentTimeMillis()
-            set(Calendar.HOUR_OF_DAY, 14) // TODO: ustawić 16.20
-            set(Calendar.MINUTE, 50)
+            set(Calendar.HOUR_OF_DAY, 16)
+            set(Calendar.MINUTE, 20)
         }
 
         Intent(this, FamiliadaBroadcastReceiver::class.java)
