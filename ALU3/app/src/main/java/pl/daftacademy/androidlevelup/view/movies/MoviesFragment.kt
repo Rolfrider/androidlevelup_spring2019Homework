@@ -24,15 +24,11 @@ class MoviesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val genre = arguments?.getString(GENRE_EXTRA) ?: throw IllegalStateException("Required genre argument")
         recyclerView.adapter = adapter
-        if (genre.isEmpty()) {
-            adapter.items = viewModel.getMovies()
-        }else{
-            adapter.items = viewModel.getMoviesOfGenre(genre)
-        }
+        adapter.items = viewModel.getMoviesOfGenre(genre)
     }
 
     companion object {
-        fun create(genre: String): MoviesFragment {
+        fun create(genre: String?): MoviesFragment {
             val fragment = MoviesFragment()
             val args = Bundle()
             args.putString(GENRE_EXTRA, genre)

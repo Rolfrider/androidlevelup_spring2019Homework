@@ -14,7 +14,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         nav.setNavigationItemSelectedListener { changePage(item = it) }
-        if (savedInstanceState == null) showPage("", addToBackStack = false)
+        if (savedInstanceState == null) showPage(null, addToBackStack = false)
         setSupportActionBar(toolbar)
 
         supportActionBar?.apply {
@@ -35,7 +35,7 @@ class HomeActivity : AppCompatActivity() {
 
     private fun changePage(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_all -> showPage("")
+            R.id.action_all -> showPage(null)
             R.id.action_action -> showPage("Action")
             R.id.action_comedy -> showPage("Comedy")
             R.id.action_crime -> showPage("Crime")
@@ -49,7 +49,7 @@ class HomeActivity : AppCompatActivity() {
         return true
     }
 
-    private fun showPage(genre: String, addToBackStack: Boolean = false) {
+    private fun showPage(genre: String?, addToBackStack: Boolean = false) {
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.container, MoviesFragment.create(genre))
